@@ -1,17 +1,20 @@
-import { CloseScrollStrategy } from '@angular/cdk/overlay';
-import { Component, EventEmitter, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { AddEmployeeComponent } from '../add-employee/add-employee.component';
-import { EmployeeService } from '../service/employee.service';
+import { CloseScrollStrategy } from "@angular/cdk/overlay";
+import { Component, EventEmitter, OnInit } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
+import { AddEmployeeComponent } from "../add-employee/add-employee.component";
+import { EmployeeService } from "../service/employee.service";
 
 @Component({
-  selector: 'app-employee',
-  templateUrl: './employee.component.html',
-  styleUrls: ['./employee.component.css'],
+  selector: "app-employee",
+  templateUrl: "./employee.component.html",
+  styleUrls: ["./employee.component.css"],
 })
 export class EmployeeComponent implements OnInit {
-  empList: any ;
-  filteredString: string = '';
+  empList: any;
+  selectedEmp: any;
+  highlight = "";
+  filteredString: string = "";
+  selectedIndex: any;
 
   // empList: any = ['ashu', 'shetty', 'tanvi', 'gowri', 'noor', 'pooja'];
   // empList: any = [
@@ -28,7 +31,6 @@ export class EmployeeComponent implements OnInit {
   //     des: 'Dev',
   //   },
 
- 
   // ];
   empDetail: boolean = false;
   constructor(
@@ -42,25 +44,33 @@ export class EmployeeComponent implements OnInit {
   }
   openDialog(): void {
     const dialogRef = this.dialog.open(AddEmployeeComponent, {
-      width: '500px',
-      height: '600px',
+      width: "500px",
+      height: "600px",
     });
   }
-  clicked() {
-    console.log('event tri');
-    console.log('filtered Sample', this.filteredString);
+  clickedEmp(data: any) {
+    console.log("clicked data", data);
+    console.log("filtered Sample", this.filteredString);
     // this.empDetail=!this.empDetail;
+    this.selectedEmp = data;
     this.empDetail = true;
   }
 
   allEmployeeList() {
     this.employeeService.getAllEmployeeDetails().subscribe((response) => {
-      console.log('response', response);
+      console.log("response getLst", response);
       this.empList = response;
+
+      this.selectedEmp = this.empList[0];
+      console.log("emp", this.selectedEmp);
     });
   }
   onSearch(event: any) {
-    console.log('search input', event.target.value);
+    console.log("search input", event.target.value);
     this.filteredString = event.target.value;
+  }
+
+  public setRow(_index: any) {
+    this.selectedIndex = _index;
   }
 }

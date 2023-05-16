@@ -19,6 +19,7 @@ export class AddProjectComponent implements OnInit {
       date: new FormControl('',Validators.required),
       employee: new FormControl('',Validators.required),
     });
+;
   }
   addProject() {
     console.log('project save clicked');
@@ -26,5 +27,10 @@ export class AddProjectComponent implements OnInit {
     this.projectService.addProjectData(this.addProjectForm.value).subscribe((response)=>{
       console.log('i am response for project added',response)
     })
+    alert("added successfully")
+    this.refreshPage()
+  }
+  refreshPage() {
+    window.location.reload();
   }
 }

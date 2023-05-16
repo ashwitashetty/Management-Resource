@@ -9,11 +9,13 @@ import { EmployeeService } from '../service/employee.service';
 })
 export class AddEmployeeComponent implements OnInit {
   addEmpForm!: FormGroup;
+  DesignationList:any;
   constructor(public employeeService: EmployeeService) {}
   ngOnInit(): void {
+    this.designationList()
     this.addEmpForm = new FormGroup({
       name: new FormControl('', Validators.required),
-      designation: new FormControl('', Validators.required),
+      designationId: new FormControl('', Validators.required),
       joiningDate: new FormControl('', Validators.required),
       technologies: new FormControl('', Validators.required),
     });
@@ -26,5 +28,17 @@ export class AddEmployeeComponent implements OnInit {
       .subscribe((response) => {
         console.log('I am res', response);
       });
+      alert("added successfully")
+    this.refreshPage();
+
+  }
+  designationList(){
+    this.employeeService.getDesignationList().subscribe((response)=>{
+      console.log('response in add empl dialog', response);
+      this.DesignationList = response;
+    })
+  }
+  refreshPage() {
+    window.location.reload();
   }
 }

@@ -1,3 +1,4 @@
+<app-header></app-header>
 <app-navbar></app-navbar>
 <div class="employee-container">
     <div class="add-emp-container">
@@ -9,11 +10,15 @@
             font-weight: 600;
             font-size: 17px;
             margin-top: 3%; " (click)="openDialog()">Add</button>
-        <input type="text" placeholder="Search" class="search-input" name="search" [(ngModel)]="filteredString" (input)="onSearch($event)">
+        <input type="text" placeholder="Search" class="search-input" name="search" [(ngModel)]="filteredString"
+            (input)="onSearch($event)">
         <div class="emp-main-list-section">
-            <div class="emp-listsection" *ngFor="let emp of empList  " >
+            <div class="emp-listsection" *ngFor="let emp of empList;let i = index;" (click)="setRow(i)"
+                [ngClass]="{'highlight': selectedIndex === i}">
                 <!-- | filter:filteredString -->
-                <div class="emp-list-container"  *ngIf="filteredString==='' || emp.name.toLowerCase().includes(filteredString.toLocaleLowerCase())"  (click)="clicked()">
+                <div class="emp-list-container"
+                    *ngIf="filteredString==='' || emp.name.toLowerCase().includes(filteredString.toLocaleLowerCase())"
+                    (click)="clickedEmp(emp) ">
                     <p class="emp-list-content">{{emp.name}}</p>
                 </div>
             </div>
@@ -21,12 +26,11 @@
 
 
     </div>
-    <div class="emp-details-container" *ngIf="empDetail===true">
-        <p class="label-text">Name: <span class="content-text">Employee 1</span></p>
-        <p class="label-text">Designation: <span class="content-text">Software engineer</span></p>
-        <p class="label-text">Joining date: <span class="content-text">12/11/22</span></p>
-        <p class="label-text">Tecnologies: <span class="content-text">Angular, ReactJs,
-                NodeJs</span></p>
+    <div class="emp-details-container">
+        <p class="label-text">Name: <span class="content-text">{{selectedEmp?.name}}</span></p>
+        <p class="label-text">Designation: <span class="content-text">{{selectedEmp?.designation}}</span></p>
+        <p class="label-text">Joining date: <span class="content-text">{{selectedEmp?.joiningDate}}</span></p>
+        <p class="label-text">Tecnologies: <span class="content-text">{{selectedEmp?.technologies}}</span></p>
         <p class="label-text">Active projects: <span class="content-text">Project1, Project2</span></p>
     </div>
 </div>

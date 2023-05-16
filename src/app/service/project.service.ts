@@ -8,10 +8,10 @@ export class ProjectService {
   constructor(private http: HttpClient) {}
   getAllProjectDetails(){
     return this.http.get(
-      'https://project-management-tool-dff6f-default-rtdb.asia-southeast1.firebasedatabase.app/projects.json',
+      'https://pmt-service.onrender.com/api/projects',
       {
-        params: {
-          key: 'AIzaSyDEenVAbz9MYo4r96CxIfxLPFNQcyrMD1U',
+        headers: {
+          'x-api-key': 'secrt-dev-1505',
         },
       }
     );
@@ -19,8 +19,12 @@ export class ProjectService {
   addProjectData(data: any) {
     console.log("data",data)
     return this.http.post(
-      'https://project-management-tool-dff6f-default-rtdb.asia-southeast1.firebasedatabase.app/projects.json',
-      data
+      'https://pmt-service.onrender.com/api/projects',
+      data,{
+        headers: {
+          'x-api-key': 'secrt-dev-1505',
+        },
+      }
     );
   }
 }

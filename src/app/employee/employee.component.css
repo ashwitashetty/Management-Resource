@@ -48,12 +48,9 @@
   height: 260px;
   width: 360px;
   overflow-y: auto;
-}
-.emp-listsection {
-  /* height: 260px; */
-  /* width: 370px; */
   /* border: 1px solid blue; */
 }
+
 .emp-list-container {
   height: 50px;
   display: flex;
@@ -94,4 +91,7 @@
   font-size: 20px;
   line-height: 15px;
   color: #000000;
+}
+.highlight{
+  background-color: #DBDEF6;
 }

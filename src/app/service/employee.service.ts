@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -24,8 +24,23 @@ export class EmployeeService {
     console.log('emp list ', this.empNameList);
     console.log('data ', name);
     return this.http.post(
-      'https://project-management-tool-dff6f-default-rtdb.asia-southeast1.firebasedatabase.app/employees.json',
-      data
+      'https://pmt-service.onrender.com/api/employees',
+      data,{
+        headers: {
+          'x-api-key': 'secrt-dev-1505',
+        },
+      }
+    );
+  }
+  getDesignationList(){
+    return this.http.get(
+      'https://pmt-service.onrender.com/api/designations',
+      {
+        headers: {
+          'x-api-key': 'secrt-dev-1505',
+        },
+      }
+     
     );
   }
 }

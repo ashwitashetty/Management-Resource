@@ -10,32 +10,32 @@ import { ProjectService } from '../service/project.service';
   styleUrls: ['./project.component.css'],
 })
 export class ProjectComponent implements OnInit {
-  projectList: any = [
-    {
-      projectname: 'project 1',
-      projectStatus: 'yet to start',
-    },
-    {
-      projectname: 'project 1',
-      projectStatus: 'yet to start',
-    },
-    {
-      projectname: 'project 1',
-      projectStatus: 'yet to start',
-    },
-    {
-      projectname: 'project 1',
-      projectStatus: 'yet to start',
-    },
-    {
-      projectname: 'project 1',
-      projectStatus: 'yet to start',
-    },
-  ];
-  // projectList:any;
+  // projectList: any = [
+  //   {
+  //     projectname: 'project 1',
+  //     projectStatus: 'yet to start',
+  //   },
+  //   {
+  //     projectname: 'project 1',
+  //     projectStatus: 'yet to start',
+  //   },
+  //   {
+  //     projectname: 'project 1',
+  //     projectStatus: 'yet to start',
+  //   },
+  //   {
+  //     projectname: 'project 1',
+  //     projectStatus: 'yet to start',
+  //   },
+  //   {
+  //     projectname: 'project 1',
+  //     projectStatus: 'yet to start',
+  //   },
+  // ];
+  projectList:any;
   constructor(public dialog: MatDialog,private projectService:ProjectService) {}
   ngOnInit(): void {
-    // this.allProjectList();
+    this.allProjectList();
     console.log(" iam in init of project",this.projectList)
   }
   openDialog(): void {
@@ -44,11 +44,11 @@ export class ProjectComponent implements OnInit {
       height: '600px',
     });
   }
-  // allProjectList(){
-  //   this.projectService.getAllProjectDetails().subscribe((response)=>{
-  //     console.log('response of project get api',response);
-  //     this.projectList=response;
-  //     console.log("iam project list",this.projectList)
-  //   })
-  // }
+  allProjectList(){
+    this.projectService.getAllProjectDetails().subscribe((response)=>{
+      console.log('response of project get api',response);
+      this.projectList=response;
+      console.log("iam project list",this.projectList)
+    })
+  }
 }
