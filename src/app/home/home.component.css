@@ -1,0 +1,33 @@
+.home-container {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .initial-container {
+    height: 93vh;
+    display: flex;
+    flex-direction: column;
+    width: 241px;
+    align-items: center;
+    justify-content: center;
+  }
+  .intial-heading-text {
+    color: #5e66ad;
+    font-family: Inter Bold;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 24px;
+    text-align: center;
+  }
+  .intial-content-text {
+    font-family: Inter Medium;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 15px;
+  
+    text-align: center;
+    color: #5e66ad;
+  }
+  

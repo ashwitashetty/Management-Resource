@@ -1,0 +1,16 @@
+<div class="header-container">
+    <p class="logo-text">RMT</p>
+    <!-- <button class="login-button">LOGIN</button> -->
+
+    <button *ngIf="loginFlag ===false" mat-raised-button
+        style="background-color: #FFFFFF ; font-family: Inter Bold; margin-right: 2%; width: 90px ; height: 35px; "
+        (click)="handleLogin()">LOGIN</button>
+
+    
+    <button *ngIf="loginFlag ===true" mat-raised-button
+        style="background-color: #FFFFFF ; font-family: Inter Bold; margin-right: 2%; width: 90px ; height: 35px; "
+        (click)="handleLogin()">LOGOUT</button>
+
+    <!-- <button #logout mat-raised-button  style="background-color: #FFFFFF ; font-family: Inter Bold; margin-right: 2%; width: 90px ; height: 35px; " (click)="handleLogin()">LOGIN</button>    -->
+
+</div>

@@ -1,0 +1,32 @@
+<app-navbar></app-navbar>
+<div class="employee-container">
+    <div class="add-emp-container">
+        <p class="all-emp-text">All employees</p>
+        <button mat-raised-button style="background-color: #9BA3ED ;
+             font-family: Inter Bold;
+             text-align: center;  width: 90px ;
+             height: 35px ;
+            font-weight: 600;
+            font-size: 17px;
+            margin-top: 3%; " (click)="openDialog()">Add</button>
+        <input type="text" placeholder="Search" class="search-input" name="search" [(ngModel)]="filteredString" (input)="onSearch($event)">
+        <div class="emp-main-list-section">
+            <div class="emp-listsection" *ngFor="let emp of empList  " >
+                <!-- | filter:filteredString -->
+                <div class="emp-list-container"  *ngIf="filteredString==='' || emp.name.toLowerCase().includes(filteredString.toLocaleLowerCase())"  (click)="clicked()">
+                    <p class="emp-list-content">{{emp.name}}</p>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="emp-details-container" *ngIf="empDetail===true">
+        <p class="label-text">Name: <span class="content-text">Employee 1</span></p>
+        <p class="label-text">Designation: <span class="content-text">Software engineer</span></p>
+        <p class="label-text">Joining date: <span class="content-text">12/11/22</span></p>
+        <p class="label-text">Tecnologies: <span class="content-text">Angular, ReactJs,
+                NodeJs</span></p>
+        <p class="label-text">Active projects: <span class="content-text">Project1, Project2</span></p>
+    </div>
+</div>

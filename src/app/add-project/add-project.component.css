@@ -1,0 +1,54 @@
+.model-header {
+    display: flex;
+    width: 450px;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .new-project {
+    font-family: Inter Bold;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 19px;
+  
+    color: #000000;
+  }
+  .model-content {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+  }
+  .save-cancel-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 250px;
+    margin: 40px 30px;
+    text-align: center;
+  }
+  
+  .dilog {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  label {
+    font-family: Inter Regular;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 15px;
+    color: #000000;
+    margin-top: 20px;
+  }
+  input {
+    height: 30px;
+    width: 300px;
+    font-family: Inter Regular;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 15px;
+    color: #000000;
+    margin-top: 20px;
+  }

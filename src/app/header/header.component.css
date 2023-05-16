@@ -1,0 +1,28 @@
+.header-container {
+  height: 7vh;
+  width: 100vw;
+  background-color: #6264a7;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid red;
+}
+.logo-text {
+  color: #ffffff;
+  margin-left: 2%;
+  font-family: Inter Medium;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 15px;
+}
+/* .login-button {
+  width: 100px;
+  height: 35px;
+  background-color: #ffffff;
+  border-radius: 2px;
+  margin-right: 2%;
+  font-family: Inter Regular;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 15px;
+} */

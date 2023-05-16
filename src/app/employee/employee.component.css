@@ -1,0 +1,97 @@
+.employee-container {
+  border: 1px solid maroon;
+  height: 85vh;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.add-emp-container {
+  width: 50%;
+  /* border: 1px solid green; */
+  display: flex;
+  flex-direction: column;
+  padding-left: 30px;
+  padding-right: 40px;
+}
+.all-emp-text {
+  font-family: Inter Medium;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 15px;
+  color: #000000;
+  margin-top: 7%;
+}
+.search-input {
+  width: 35%;
+  height: 40px;
+  background: #ffffff;
+  outline: none;
+  border: 1px solid #474242;
+  margin-top: 3%;
+  margin-bottom: 50px;
+  font-family: Inter Regular;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 15px;
+}
+::placeholder {
+  color: #cdbebe;
+  font-family: Inter Regular;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 15px;
+}
+.emp-main-list-section {
+  height: 260px;
+  width: 360px;
+  overflow-y: auto;
+}
+.emp-listsection {
+  /* height: 260px; */
+  /* width: 370px; */
+  /* border: 1px solid blue; */
+}
+.emp-list-container {
+  height: 50px;
+  display: flex;
+  padding-left: 10px;
+  border: 1px solid #5e66ad;
+}
+/* .emp-list-container:focus{
+  background-color: #5E66AD;
+} */
+.emp-listsection::-webkit-scrollbar {
+  display: none;
+}
+.emp-list-content {
+  font-family: Inter Medium;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 15px;
+}
+.emp-details-container {
+  width: 50%;
+  border: 1px solid blue;
+  padding-right: 30px;
+  padding-left: 40px;
+  padding-top: 60px;
+}
+.label-text {
+  font-family: Inter Bold;
+  font-weight: 900;
+  font-size: 20px;
+  line-height: 15px;
+  color: #000000;
+  margin-top: 5%;
+}
+.content-text {
+  font-family: Inter Regular;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 15px;
+  color: #000000;
+}
