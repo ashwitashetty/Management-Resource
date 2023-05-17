@@ -1,28 +1,23 @@
 .login-container {
   height: 93vh;
   display: flex;
-  /* flex-direction: column; */
-  /* width: 241px; */
   align-items: center;
   justify-content: center;
-  border: 1px solid red;
 }
 .login-content {
   border: 1px solid #5e66ad;
   border-radius: 5px;
   width: 400px;
-  height: 300px;
+  height: 200px;
   padding: 20px;
 }
 
 .form-group1 {
-  /* border: 1px solid red; */
   display: flex;
   flex-direction: column;
   height: 80px;
 }
 .form-group2 {
-  /* border: 1px solid red; */
   display: flex;
   flex-direction: column;
   height: 80px;
@@ -46,10 +41,6 @@ input {
 .form-control {
   height: 40px;
 }
-/* input.ng-invalid.ng-touched {
-  border: 1px solid red;
-  height: 40px;
-} */
 .error-text {
   height: 10px;
   font-family: Inter Regular;

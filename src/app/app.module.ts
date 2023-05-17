@@ -20,6 +20,7 @@ import { AddProjectComponent } from './add-project/add-project.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FilterPipe } from './pipes/filter.pipe';
 import { ProjectFilterPipe } from './pipes/project-filter.pipe';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, LoginComponent, HomeComponent, NavbarComponent, EmployeeComponent, ProjectComponent, AddEmployeeComponent, AddProjectComponent, FilterPipe, ProjectFilterPipe],
@@ -32,7 +33,8 @@ import { ProjectFilterPipe } from './pipes/project-filter.pipe';
     MaterialModule,
     CommonModule,
     MatIconModule,
-    HttpClientModule
+    HttpClientModule,
+    NgMultiSelectDropDownModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

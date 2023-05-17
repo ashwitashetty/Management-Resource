@@ -1,8 +1,9 @@
-import { CloseScrollStrategy } from "@angular/cdk/overlay";
 import { Component, EventEmitter, OnInit } from "@angular/core";
+import { CloseScrollStrategy } from "@angular/cdk/overlay";
 import { MatDialog } from "@angular/material/dialog";
 import { AddEmployeeComponent } from "../add-employee/add-employee.component";
 import { EmployeeService } from "../service/employee.service";
+import { ProjectService } from "../service/project.service";
 
 @Component({
   selector: "app-employee",
@@ -15,32 +16,26 @@ export class EmployeeComponent implements OnInit {
   highlight = "";
   filteredString: string = "";
   selectedIndex: any;
-
-  // empList: any = ['ashu', 'shetty', 'tanvi', 'gowri', 'noor', 'pooja'];
-  // empList: any = [
-  //   {
-  //     name: 'ashwitha',
-  //     des: 'soft',
-  //   },
-  //   {
-  //     name: 'gowri',
-  //     des: 'train',
-  //   },
-  //   {
-  //     name: 'harshitha',
-  //     des: 'Dev',
-  //   },
-
-  // ];
+  projectList: any;
   empDetail: boolean = false;
+  sortedProjects: any;
+  sortedProjectList: any = [];
   constructor(
     public dialog: MatDialog,
-    public employeeService: EmployeeService
+    public employeeService: EmployeeService,
+    public projectService: ProjectService
   ) {}
   ngOnInit(): void {
+    // console.log("Gowri", this.projectService.employeeDetail);
+    // console.log("selssss",this.employeeService.selectedEmp)
+    // if (this.employeeService.selectedEmp === undefined) {
+    //   this.allEmployeeList();
+    // } else {
+    //   this.employeeService.selectedEmp = this.projectService.employeeDetail;
+    //   console.log("^^^^^",this.employeeService.selectedEmp)
+    // }
     this.allEmployeeList();
-    // console.log('iam emp list', this.empList);
-    // console.log('I am from emp service', this.employeeService.empNameList);
+    this.allProjectList();
   }
   openDialog(): void {
     const dialogRef = this.dialog.open(AddEmployeeComponent, {
@@ -53,6 +48,8 @@ export class EmployeeComponent implements OnInit {
     console.log("filtered Sample", this.filteredString);
     // this.empDetail=!this.empDetail;
     this.selectedEmp = data;
+    this.allProjectList();
+    localStorage.removeItem("EmployeeDetail");
     this.empDetail = true;
   }
 
@@ -60,17 +57,33 @@ export class EmployeeComponent implements OnInit {
     this.employeeService.getAllEmployeeDetails().subscribe((response) => {
       console.log("response getLst", response);
       this.empList = response;
-
-      this.selectedEmp = this.empList[0];
-      console.log("emp", this.selectedEmp);
+      if (localStorage.getItem("EmployeeDetail")) {
+        console.log("inside if", localStorage.getItem("EmployeeDetail"));
+        this.selectedEmp = JSON.parse(localStorage.getItem("EmployeeDetail"));
+      } else {
+        this.selectedEmp = this.empList[0];
+        console.log("inside else", localStorage.getItem("EmployeeDetail"));
+        console.log(this.selectedEmp);
+      }
+    });
+  }
+  allProjectList() {
+    this.sortedProjectList = [];
+    this.projectService.getAllProjectDetails().subscribe((response) => {
+      console.log("response of project get api", response);
+      this.projectList = response;
+      this.sortedProjects = this.projectList.map((proj: any) => {
+        proj.employees.map((i: any) => {
+          if (i.id === this.selectedEmp.id) {
+            this.sortedProjectList.push(proj.name);
+          }
+        });
+      });
+      console.log("ppppp", this.sortedProjectList);
     });
   }
   onSearch(event: any) {
     console.log("search input", event.target.value);
     this.filteredString = event.target.value;
-  }
-
-  public setRow(_index: any) {
-    this.selectedIndex = _index;
   }
 }

@@ -31,7 +31,8 @@ export class HeaderComponent implements OnInit {
     // this.loginFlag = true;
     // this.login.setIsLoggedIn(false);
     localStorage.setItem("LoggedInStatus", JSON.stringify(false));
-    localStorage.setItem("ButtonStatus", JSON.stringify(true));
+    localStorage.removeItem("EmployeeDetail")
+    // localStorage.setItem("ButtonStatus", JSON.stringify(true));
     this.loginFlag = false;
     this.router.navigate(["login"]);
   }

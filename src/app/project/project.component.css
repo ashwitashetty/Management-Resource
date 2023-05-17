@@ -1,5 +1,4 @@
 .project-container {
-  border: 1px solid maroon;
   height: 85vh;
   width: 100%;
   display: flex;
@@ -7,7 +6,7 @@
 }
 .add-project-container {
   width: 50%;
-  border: 1px solid red;
+
   display: flex;
   flex-direction: column;
   padding-left: 30px;
@@ -60,7 +59,7 @@
 }
 .project-details-container {
   width: 50%;
-  border: 1px solid blue;
+
   padding-right: 30px;
   padding-left: 40px;
   padding-top: 60px;
@@ -73,6 +72,11 @@
   color: #000000;
   margin-top: 5%;
 }
+.flex {
+  display: flex;
+  flex-direction: row;
+  width: 300px;
+}
 .content-text {
   font-family: Inter Regular;
   font-weight: 500;
@@ -80,36 +84,51 @@
   line-height: 15px;
   color: #000000;
 }
-table,
-th,
-td {
-  border-collapse: collapse;
-}
-.project-table {
-  height: 100px;
-  width: 400px;
-  border: 1px solid yellow;
-
-}
-.project-table-body {
-  /* height: 200px; */
-  /* border: 1px solid blue; */
-  border: 2px solid #5e66ad
-}
-.table-data {
-  padding-left: 30px;
-  font-family: Inter Medium;
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 15px;
-  color: #000000;
+.table-main-list-section {
+  height: 260px;
+  width: 360px;
+  overflow-y: auto;
   /* border: 1px solid red; */
-
 }
 
-.project-row {
-  border: 2px solid #5e66ad;
+.table-list-container {
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  padding-left: 10px;
+  border: 1px solid #5e66ad;
 }
-a{
+/* .emp-list-container:focus{
+  background-color: #5E66AD;
+} */
+/* .table-listsection::-webkit-scrollbar {
+  display: none;
+} */
+.table-list-content {
+  font-family: Inter Medium;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 15px;
+  width: 65%;
+}
+.table-status {
+  font-family: Inter Medium;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 15px;
+}
+.table-details-container {
+  width: 50%;
+  padding-right: 30px;
+  padding-left: 40px;
+  padding-top: 60px;
+}
+a {
   text-decoration: none;
+  height: 50px;
+}
+.highlight {
+  background-color: #dbdef6;
 }

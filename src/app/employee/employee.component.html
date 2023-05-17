@@ -13,8 +13,8 @@
         <input type="text" placeholder="Search" class="search-input" name="search" [(ngModel)]="filteredString"
             (input)="onSearch($event)">
         <div class="emp-main-list-section">
-            <div class="emp-listsection" *ngFor="let emp of empList;let i = index;" (click)="setRow(i)"
-                [ngClass]="{'highlight': selectedIndex === i}">
+            <div class="emp-listsection" *ngFor="let emp of empList;"
+                [ngStyle]="{'background-color': emp.name === selectedEmp?.name ? '#DBDEF6' : 'transparent'}">
                 <!-- | filter:filteredString -->
                 <div class="emp-list-container"
                     *ngIf="filteredString==='' || emp.name.toLowerCase().includes(filteredString.toLocaleLowerCase())"
@@ -31,6 +31,8 @@
         <p class="label-text">Designation: <span class="content-text">{{selectedEmp?.designation}}</span></p>
         <p class="label-text">Joining date: <span class="content-text">{{selectedEmp?.joiningDate}}</span></p>
         <p class="label-text">Tecnologies: <span class="content-text">{{selectedEmp?.technologies}}</span></p>
-        <p class="label-text">Active projects: <span class="content-text">Project1, Project2</span></p>
+        <p class="label-text">Active projects: <span class="content-text"
+                *ngFor="let active of sortedProjectList">{{active}}&nbsp;&nbsp;&nbsp;</span></p>
+        <!-- <p class="label-text">Active projects: <span class="content-text" *ngIf="sortedProjectList.length < 0">none</span></p> -->
     </div>
 </div>

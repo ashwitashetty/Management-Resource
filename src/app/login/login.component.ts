@@ -55,6 +55,7 @@ export class LoginComponent implements OnInit {
         localStorage.removeItem("lastAction");
         setTimeout(() => {
           alert("Session Expired,Please Login again");
+          localStorage.removeItem("EmployeeDetail")
         }, 1000);
 
         // this.login.setIsLoggedIn(false);

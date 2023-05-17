@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class EmployeeService {
   empNameList: any = [];
+
   constructor(private http: HttpClient) {}
   getAllEmployeeDetails() {
     return this.http.get(

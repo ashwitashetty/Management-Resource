@@ -1,3 +1,4 @@
+<app-header></app-header>
 <app-navbar></app-navbar>
 <div class="project-container">
     <div class="add-project-container">
@@ -10,36 +11,56 @@
             font-weight: 600;
             font-size: 17px;
             margin-top: 3%; " (click)="openDialog()">Add</button>
-        <input type="text" placeholder="Search" class="search-input">
-        <!-- <div class="project-list-container" *ngFor="let project of projectList">
-            <p class="project-list-content">{{project}}</p>
-        </div> -->
-        <table class="project-table">
-            <tbody class="project-table-body">
-                <tr *ngFor="let list of projectList" class="project-row">
-                    <td class="table-data">{{list.name}} </td>
-                    <td class="table-data">{{list.status}}</td>
-                </tr>
-            </tbody>
-        </table>
+        <input type="text" placeholder="Search" class="search-input" name="search" [(ngModel)]="filteredProjectText"
+            (input)="onProjectSearch($event)">
+        <div class="table-main-list-section">
+            <div class="table-listsection" *ngFor="let list of projectList;"
+                [ngStyle]="{'background-color': list.name === selectedProject?.name ? '#DBDEF6' : 'transparent'}">
+                <!-- | filter:filteredString -->
+                <div class="table-list-container"
+                    *ngIf="filteredProjectText==='' || list.name.toLowerCase().includes(filteredProjectText.toLocaleLowerCase())"
+                    (click)="clickedProject(list) ">
+                    <p class="table-list-content">{{list.name}}</p>
+                    <p class="table-status" *ngIf="list?.status ==='New'">Yet to start</p>
+                    <p class="table-status" *ngIf="list?.status ==='In Progress'">In Progress</p>
+                    <p class="table-status" *ngIf="list?.status ==='Closed'">Closed</p>
+                </div>
+            </div>
+        </div>
+
+
     </div>
     <div class="project-details-container">
-        <p class="label-text">Name: <span class="content-text">Employee 1</span></p>
+        <p class="label-text">Name: <span class="content-text">{{selectedProject?.name}}</span></p>
         <div class="label-text ">Status:
 
-            <span class="content-text">In progress</span>
-            <button mat-raised-button style="background-color: #9BA3ED ;
+            <span class="content-text">{{selectedProject?.status === 'New' ? 'Yet to start' : selectedProject?.status
+                === 'In Progress' ? 'In progress' : 'Close' }}</span>
+            <button mat-raised-button *ngIf="selectedProject?.status ==='New'" style="background-color: #9BA3ED ;
                  font-family: Inter Bold;
                  text-align: center;
                 width: 90px ;
                  height: 35px ;
                 font-weight: 600;
                 font-size: 17px;
-                 margin-left: 30px; ">Close</button>
+                 margin-left: 30px; " (click)="statusUpdate('In Progress',selectedProject?.id)">Start</button>
+            <button mat-raised-button *ngIf="selectedProject?.status ==='In Progress'" style="background-color: #9BA3ED ;
+                 font-family: Inter Bold;
+                 text-align: center;
+                width: 90px ;
+                 height: 35px ;
+                font-weight: 600;
+                font-size: 17px;
+                 margin-left: 30px; " (click)="statusUpdate('Closed',selectedProject?.id)">Close</button>
 
-            <p class="label-text">Joining date: <span class="content-text">12/11/22</span></p>
-            <p class="label-text">Tecnologies: <span class="content-text">Angular, ReactJs,
-                    NodeJs</span></p>
-            <p class="label-text">Developers: <span class="content-text"><a routerLink="/employee">Employee 1</a></span></p>
+            <p class="label-text">Start date: <span class="content-text">{{selectedProject?.startDate}}</span></p>
+            <p class="label-text">Tecnologies: <span class="content-text">{{selectedProject?.technologies}}</span></p>
+            <p class="label-text flex">Developers: <span class="content-text"
+                    *ngFor="let emp of selectedProject?.employees">
+                    <a routerLink="/employee" (click)="onEmployeeClick(emp)">{{emp?.name}}&nbsp;&nbsp;</a>
+                    <!-- routerLink="/employee" -->
+
+                </span>
+            </p>
         </div>
     </div>

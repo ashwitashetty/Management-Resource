@@ -52,3 +52,35 @@
     color: #000000;
     margin-top: 20px;
   }
+  .multiselect-dropdown{
+    width: 280px;
+    margin-top: 20px;
+  
+  }
+  ::ng-deep .multiselect-dropdown .dropdown-btn .dropdown-multiselect__caret:before {
+    position: relative;
+    left: 31px !important;
+    top: 65%;
+    color: #999;
+    margin-top: 4px;
+    border-style: solid;
+    border-width: 8px 8px 0;
+    border-color: #999 transparent;
+    content: "";
+}
+
+
+::ng-deep .multiselect-dropdown .dropdown-btn {
+  display: inline-block;
+  border: 1px solid #000000 !important;
+  width: 100%;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-weight: 400;
+  line-height: 1.52857143;
+  text-align: left;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border-radius: 4px;
+}

@@ -10,9 +10,13 @@
             <label for="technologies">Technologies</label>
             <input type="text" id="technologies" formControlName="technologies">
             <label for="date">Start date</label>
-            <input type="date" id="date" formControlName="date">
+            <input type="date" id="date" formControlName="startDate">
             <label for="employee">Employees</label>
-            <input type="text" id="employee" formControlName="employee">
+            <!-- <input type="text" id="employee" formControlName="employee"> -->
+            <ng-multiselect-dropdown [placeholder]="'Select Your Item'" [settings]="dropdownSettings"
+                [data]="employeeList" class="multiselect-dropdown" formControlName="employees" optionLabel="name"
+                optionValue="id" (onSelect)="onItemSelect($event)" (onDeSelect)="onItemDeSelect($event)">
+            </ng-multiselect-dropdown>
         </div>
         <div mat-dialog-actions class="save-cancel-button ">
             <button mat-raised-button mat-dialog-close class="cancel-button" style="background-color: #D2D3DD ;
