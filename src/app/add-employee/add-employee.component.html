@@ -8,7 +8,6 @@
             <label for="name">Name</label>
             <input type="text" id="name" formControlName="name">
             <label for="designation">Designation</label>
-            <!-- <input type="text" id="designation" formControlName="designation"> -->
             <select class="select-input" name="designation" id="designationId" formControlName="designationId">
                 <option value="">Select Designation</option>
                 <option *ngFor="let i of DesignationList ; " value={{i.id}}>

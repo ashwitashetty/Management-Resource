@@ -1,4 +1,4 @@
-import { Injectable, NgZone } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 
 @Injectable({
@@ -9,7 +9,6 @@ export class LoginService {
 
   setIsLoggedIn(data: boolean) {
     this.isLoggedIn.next(data);
-    // localStorage.setItem("LoggedInStatus", JSON.stringify(data));
   }
   getIsLoggedIn() {
     return this.isLoggedIn.asObservable();

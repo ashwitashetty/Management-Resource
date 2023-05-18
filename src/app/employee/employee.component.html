@@ -15,7 +15,6 @@
         <div class="emp-main-list-section">
             <div class="emp-listsection" *ngFor="let emp of empList;"
                 [ngStyle]="{'background-color': emp.name === selectedEmp?.name ? '#DBDEF6' : 'transparent'}">
-                <!-- | filter:filteredString -->
                 <div class="emp-list-container"
                     *ngIf="filteredString==='' || emp.name.toLowerCase().includes(filteredString.toLocaleLowerCase())"
                     (click)="clickedEmp(emp) ">
@@ -23,8 +22,6 @@
                 </div>
             </div>
         </div>
-
-
     </div>
     <div class="emp-details-container">
         <p class="label-text">Name: <span class="content-text">{{selectedEmp?.name}}</span></p>
@@ -33,6 +30,5 @@
         <p class="label-text">Tecnologies: <span class="content-text">{{selectedEmp?.technologies}}</span></p>
         <p class="label-text">Active projects: <span class="content-text"
                 *ngFor="let active of sortedProjectList">{{active}}&nbsp;&nbsp;&nbsp;</span></p>
-        <!-- <p class="label-text">Active projects: <span class="content-text" *ngIf="sortedProjectList.length < 0">none</span></p> -->
     </div>
 </div>

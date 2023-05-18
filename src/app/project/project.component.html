@@ -16,7 +16,6 @@
         <div class="table-main-list-section">
             <div class="table-listsection" *ngFor="let list of projectList;"
                 [ngStyle]="{'background-color': list.name === selectedProject?.name ? '#DBDEF6' : 'transparent'}">
-                <!-- | filter:filteredString -->
                 <div class="table-list-container"
                     *ngIf="filteredProjectText==='' || list.name.toLowerCase().includes(filteredProjectText.toLocaleLowerCase())"
                     (click)="clickedProject(list) ">
@@ -27,8 +26,6 @@
                 </div>
             </div>
         </div>
-
-
     </div>
     <div class="project-details-container">
         <p class="label-text">Name: <span class="content-text">{{selectedProject?.name}}</span></p>
@@ -52,14 +49,11 @@
                 font-weight: 600;
                 font-size: 17px;
                  margin-left: 30px; " (click)="statusUpdate('Closed',selectedProject?.id)">Close</button>
-
             <p class="label-text">Start date: <span class="content-text">{{selectedProject?.startDate}}</span></p>
             <p class="label-text">Tecnologies: <span class="content-text">{{selectedProject?.technologies}}</span></p>
             <p class="label-text flex">Developers: <span class="content-text"
                     *ngFor="let emp of selectedProject?.employees">
                     <a routerLink="/employee" (click)="onEmployeeClick(emp)">{{emp?.name}}&nbsp;&nbsp;</a>
-                    <!-- routerLink="/employee" -->
-
                 </span>
             </p>
         </div>

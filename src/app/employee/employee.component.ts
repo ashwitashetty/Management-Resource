@@ -1,5 +1,4 @@
-import { Component, EventEmitter, OnInit } from "@angular/core";
-import { CloseScrollStrategy } from "@angular/cdk/overlay";
+import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { AddEmployeeComponent } from "../add-employee/add-employee.component";
 import { EmployeeService } from "../service/employee.service";
@@ -26,14 +25,6 @@ export class EmployeeComponent implements OnInit {
     public projectService: ProjectService
   ) {}
   ngOnInit(): void {
-    // console.log("Gowri", this.projectService.employeeDetail);
-    // console.log("selssss",this.employeeService.selectedEmp)
-    // if (this.employeeService.selectedEmp === undefined) {
-    //   this.allEmployeeList();
-    // } else {
-    //   this.employeeService.selectedEmp = this.projectService.employeeDetail;
-    //   console.log("^^^^^",this.employeeService.selectedEmp)
-    // }
     this.allEmployeeList();
     this.allProjectList();
   }
@@ -44,9 +35,6 @@ export class EmployeeComponent implements OnInit {
     });
   }
   clickedEmp(data: any) {
-    console.log("clicked data", data);
-    console.log("filtered Sample", this.filteredString);
-    // this.empDetail=!this.empDetail;
     this.selectedEmp = data;
     this.allProjectList();
     localStorage.removeItem("EmployeeDetail");
@@ -55,22 +43,17 @@ export class EmployeeComponent implements OnInit {
 
   allEmployeeList() {
     this.employeeService.getAllEmployeeDetails().subscribe((response) => {
-      console.log("response getLst", response);
       this.empList = response;
       if (localStorage.getItem("EmployeeDetail")) {
-        console.log("inside if", localStorage.getItem("EmployeeDetail"));
         this.selectedEmp = JSON.parse(localStorage.getItem("EmployeeDetail"));
       } else {
         this.selectedEmp = this.empList[0];
-        console.log("inside else", localStorage.getItem("EmployeeDetail"));
-        console.log(this.selectedEmp);
       }
     });
   }
   allProjectList() {
     this.sortedProjectList = [];
     this.projectService.getAllProjectDetails().subscribe((response) => {
-      console.log("response of project get api", response);
       this.projectList = response;
       this.sortedProjects = this.projectList.map((proj: any) => {
         proj.employees.map((i: any) => {
@@ -79,11 +62,9 @@ export class EmployeeComponent implements OnInit {
           }
         });
       });
-      console.log("ppppp", this.sortedProjectList);
     });
   }
   onSearch(event: any) {
-    console.log("search input", event.target.value);
     this.filteredString = event.target.value;
   }
 }

@@ -1,12 +1,5 @@
-import { Injectable, OnInit } from "@angular/core";
-import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  Router,
-  RouterStateSnapshot,
-  UrlTree,
-} from "@angular/router";
-import { Observable } from "rxjs";
+import { Injectable } from "@angular/core";
+import { CanActivate, Router } from "@angular/router";
 import { LoginService } from "./service/login-service.service";
 
 @Injectable({
@@ -14,17 +7,10 @@ import { LoginService } from "./service/login-service.service";
 })
 export class AuthGuard implements CanActivate {
   isLoginAuth: string = "";
-  constructor(private login: LoginService, private router: Router) {
-    // console.log("in auth",this.login.getIsLoggedIn())
-  }
+  constructor(private login: LoginService, private router: Router) {}
 
-  canActivate():any 
-  {
-    // this.login.getIsLoggedIn().subscribe((data)=>{
-    //   this.isLoginAuth=data
-    //  })
-    // this.isLoginAuth = localStorage.getItem("LoggedInStatus");
-    if (localStorage.getItem("LoggedInStatus")==='true') {
+  canActivate(): any {
+    if (localStorage.getItem("LoggedInStatus") === "true") {
       return true;
     } else {
       this.router.navigate(["/login"]);
@@ -32,9 +18,3 @@ export class AuthGuard implements CanActivate {
     }
   }
 }
-// if (this.login.getIsLoggedIn()) {
-//   return true;
-// } else {
-//   this.router.navigateByUrl('/');
-//   return false;
-// }

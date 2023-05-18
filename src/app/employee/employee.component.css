@@ -1,5 +1,4 @@
 .employee-container {
-
   height: 85vh;
   width: 100%;
   display: flex;
@@ -55,9 +54,6 @@
   padding-left: 10px;
   border: 1px solid #5e66ad;
 }
-/* .emp-list-container:focus{
-  background-color: #5E66AD;
-} */
 .emp-listsection::-webkit-scrollbar {
   display: none;
 }

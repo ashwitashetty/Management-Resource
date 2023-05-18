@@ -10,7 +10,6 @@
     font-weight: 700;
     font-size: 20px;
     line-height: 19px;
-  
     color: #000000;
   }
   .model-content {
@@ -68,8 +67,6 @@
     border-color: #999 transparent;
     content: "";
 }
-
-
 ::ng-deep .multiselect-dropdown .dropdown-btn {
   display: inline-block;
   border: 1px solid #000000 !important;
