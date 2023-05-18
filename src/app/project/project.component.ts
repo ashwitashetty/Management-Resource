@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
+import { Subject } from "rxjs";
 import { AddProjectComponent } from "../add-project/add-project.component";
 import { ProjectService } from "../service/project.service";
 
@@ -14,6 +15,8 @@ export class ProjectComponent implements OnInit {
   selectedProject: any;
   selectedIndex: any;
   status: any;
+  error = new Subject<string>();
+
   constructor(
     public dialog: MatDialog,
     private projectService: ProjectService
@@ -32,6 +35,9 @@ export class ProjectComponent implements OnInit {
     this.projectService.getAllProjectDetails().subscribe((response) => {
       this.projectList = response;
       this.selectedProject = this.projectList[0];
+    },
+    (error) => {
+      this.error.next(error.message);
     });
   }
   onProjectSearch(event: any) {
@@ -43,7 +49,7 @@ export class ProjectComponent implements OnInit {
   onEmployeeClick(emp: {}) {
     localStorage.setItem("EmployeeDetail", JSON.stringify(emp));
   }
-  statusUpdate(state: string, id: any) {
+  statusUpdate(state: string, id: number) {
     this.projectService.fetchProjectStatus(state, id).subscribe((response) => {
       this.status = response;
       this.projectService.getAllProjectDetails().subscribe((response) => {
@@ -54,6 +60,9 @@ export class ProjectComponent implements OnInit {
           }
         });
       });
+    },
+    (error) => {
+      this.error.next(error.message);
     });
   }
 }

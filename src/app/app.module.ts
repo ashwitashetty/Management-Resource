@@ -17,10 +17,11 @@ import { CommonModule } from '@angular/common';
 import { AddEmployeeComponent } from './add-employee/add-employee.component';
 import { MatIconModule } from '@angular/material/icon';
 import { AddProjectComponent } from './add-project/add-project.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FilterPipe } from './pipes/filter.pipe';
 import { ProjectFilterPipe } from './pipes/project-filter.pipe';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { AuthInterceptorService } from './service/auth-interceptor.service';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, LoginComponent, HomeComponent, NavbarComponent, EmployeeComponent, ProjectComponent, AddEmployeeComponent, AddProjectComponent, FilterPipe, ProjectFilterPipe],
@@ -36,7 +37,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     HttpClientModule,
     NgMultiSelectDropDownModule.forRoot(),
   ],
-  providers: [],
+  providers: [{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptorService,multi:true},],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

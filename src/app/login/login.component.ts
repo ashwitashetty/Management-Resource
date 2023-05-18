@@ -1,6 +1,7 @@
 import { Component, NgZone, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
+import { timeLimit } from "../constants/enum";
 
 @Component({
   selector: "app-login",
@@ -11,10 +12,7 @@ export class LoginComponent implements OnInit {
   signupForm!: FormGroup;
   loginDetails: any = [];
   loginStatus: any;
-  constructor(
-    private router: Router,
-    private ngZone: NgZone
-  ) {}
+  constructor(private router: Router, private ngZone: NgZone) {}
   getLastAction() {
     return localStorage.getItem("lastAction");
   }
@@ -41,14 +39,13 @@ export class LoginComponent implements OnInit {
   check() {
     this.loginStatus = localStorage.getItem("LoggedInStatus");
     const now = Date.now();
-    const timeLeft = parseInt(this.getLastAction()) + 3 * 60 * 1000;
+    const timeLeft = parseInt(this.getLastAction()) + timeLimit.TIME_LIMIT;
     const diff = timeLeft - now;
     const isTimeout = diff < 0;
     this.ngZone.run(() => {
       if (isTimeout && this.loginStatus) {
         localStorage.removeItem("lastAction");
         setTimeout(() => {
-          alert("Session Expired,Please Login again");
           localStorage.removeItem("EmployeeDetail");
         }, 1000);
 
@@ -98,7 +95,6 @@ export class LoginComponent implements OnInit {
           user.password !== this.signupForm.value.password
       ))
     ) {
-      alert("please enter valid password");
     } else {
       this.loginDetails.push(this.signupForm.value);
       localStorage.setItem(

@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ProjectService } from "../service/project.service";
 import { IDropdownSettings } from "ng-multiselect-dropdown";
 import { EmployeeService } from "../service/employee.service";
+import { Subject } from "rxjs";
 
 @Component({
   selector: "app-add-project",
@@ -15,6 +16,8 @@ export class AddProjectComponent implements OnInit {
   SelectedEmpId: any = [];
   selectedItems: any = [];
   employeeList: any = [];
+  error = new Subject<string>();
+
   constructor(
     private projectService: ProjectService,
     private employeeService: EmployeeService
@@ -46,16 +49,26 @@ export class AddProjectComponent implements OnInit {
       ...this.addProjectForm.value,
       employees: this.SelectedEmpId,
     };
-    this.projectService
-      .addProjectData(UpdatedProjectForm)
-      .subscribe((response) => {});
-    alert("Added successfully");
+    this.projectService.addProjectData(UpdatedProjectForm).subscribe(
+      (response) => {
+        // console.log("Project Added")
+      },
+      (error) => {
+        this.error.next(error.message);
+      }
+    );
+
     this.refreshPage();
   }
   allEmployeeList() {
-    this.employeeService.getAllEmployeeDetails().subscribe((response) => {
-      this.employeeList = response;
-    });
+    this.employeeService.getAllEmployeeDetails().subscribe(
+      (response) => {
+        this.employeeList = response;
+      },
+      (error) => {
+        this.error.next(error.message);
+      }
+    );
   }
   refreshPage() {
     window.location.reload();
