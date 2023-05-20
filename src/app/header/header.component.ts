@@ -30,7 +30,5 @@ export class HeaderComponent implements OnInit {
       this.loginFlag = false;
     }
   }
-  refresh() {
-    window.location.reload();
-  }
+
 }

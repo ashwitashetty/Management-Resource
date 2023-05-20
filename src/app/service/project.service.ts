@@ -16,7 +16,6 @@ export class ProjectService {
     return (
       this.http.get(`${this.BASE_URL}projects`).subscribe((res) => {
         this.getProjDetail.next(res);
-        console.log('first',res)
       }),
       (error) => {
         this.error.next(error.message);
@@ -32,7 +31,7 @@ export class ProjectService {
     return (
       this.http.post(`${this.BASE_URL}projects`, data)
       // .subscribe((res) => {
-      //   console.log('success')
+
       //   // this.getAllProjectDetails()
       // }),
       // (error) => {

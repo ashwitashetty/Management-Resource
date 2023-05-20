@@ -16,7 +16,7 @@ export class EmployeeComponent implements OnInit {
   selectedEmp: any;
   filteredString: string = "";
   selectedIndex: any;
-  EmployeeprojectList: any = [];
+  EmployeeprojectList: ProjectInfo[] = [];
   sortedProjects: any = [];
   sortedProjectList: any = [];
   constructor(
@@ -36,14 +36,13 @@ export class EmployeeComponent implements OnInit {
   }
   clickedEmp(data: any) {
     this.selectedEmp = data;
-    console.log("clicked data", this.selectedEmp);
     this.individualEmpDetails(data)
     localStorage.removeItem("EmployeeDetail");
   }
 
   allEmployeeList() {
     this.employeeService.getAllEmployeeDetails();
-    this.employeeService.getEmpList.subscribe((user) => {
+    this.employeeService.getEmpList.subscribe((user:EmployeeInfo[]) => {
       this.empList = user;
       if (localStorage.getItem("EmployeeDetail")) {
         this.selectedEmp = JSON.parse(localStorage.getItem("EmployeeDetail"));
@@ -54,7 +53,7 @@ export class EmployeeComponent implements OnInit {
   }
   allProjectList() {
     this.projectService.getAllProjectDetails();
-    this.projectService.getProjDetail.subscribe((proj) => {
+    this.projectService.getProjDetail.subscribe((proj:ProjectInfo[]) => {
       this.EmployeeprojectList = proj;
       this.individualEmpDetails(this.selectedEmp)
     });
