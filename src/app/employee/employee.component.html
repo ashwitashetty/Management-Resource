@@ -6,7 +6,7 @@
         <button mat-raised-button style="background-color: #9BA3ED ;
              font-family: Inter Bold;
              text-align: center;  width: 90px ;
-             height: 35px ;
+             min-height: 35px ;
             font-weight: 600;
             font-size: 17px;
             margin-top: 30px; " (click)="openDialog()">Add</button>
@@ -28,7 +28,11 @@
         <p class="label-text">Designation: <span class="content-text">{{selectedEmp?.designation}}</span></p>
         <p class="label-text">Joining date: <span class="content-text">{{selectedEmp?.joiningDate}}</span></p>
         <p class="label-text">Tecnologies: <span class="content-text">{{selectedEmp?.technologies}}</span></p>
-        <p class="label-text">Active projects: <span class="content-text"
-                *ngFor="let active of sortedProjectList">{{active}}&nbsp;&nbsp;&nbsp;</span></p>
+        <div class="active-project-label-text">
+            <p class="active-project-label">Active projects:</p>
+            <div class="activeProjectDiv">
+                <span class="content-text1" *ngFor="let active of sortedProjectList">{{active}}</span>
+            </div>
+        </div>
     </div>
 </div>

@@ -23,17 +23,19 @@ export class AddEmployeeComponent implements OnInit {
     });
   }
   addEmployee() {
-    console.log("####",this.addEmpForm.value)
-    this.employeeService.addEmployeeData(this.addEmpForm.value).subscribe(
-      (response) => {
-        console.log("Emp added")
-        this.refreshPage();
-      },
-      (error) => {
-        this.error.next(error.message);
-      }
-    );
+    console.log("####",this.addEmpForm.value);
+    this.employeeService.addEmployeeData(this.addEmpForm.value)
+    // this.employeeService.addEmployeeData(this.addEmpForm.value).subscribe(
+    //   (response) => {
+  
+    //     console.log("Emp added")
+    //     // this.refreshPage();
+    //     // this.employeeService.allEmpList.next(response)
 
+    //   },
+    //   (error) => {
+    //     this.error.next(error.message);
+    //   }
   }
   designationList() {
     this.employeeService.getDesignationList().subscribe(
@@ -45,7 +47,7 @@ export class AddEmployeeComponent implements OnInit {
       }
     );
   }
-  refreshPage() {
-    window.location.reload();
-  }
+  // refreshPage() {
+  //   window.location.reload();
+  // }
 }

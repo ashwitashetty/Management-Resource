@@ -4,6 +4,8 @@ import { ProjectService } from "../service/project.service";
 import { IDropdownSettings } from "ng-multiselect-dropdown";
 import { EmployeeService } from "../service/employee.service";
 import { Subject } from "rxjs";
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Inject } from '@angular/core';
 
 @Component({
   selector: "app-add-project",
@@ -20,7 +22,8 @@ export class AddProjectComponent implements OnInit {
 
   constructor(
     private projectService: ProjectService,
-    private employeeService: EmployeeService
+    private employeeService: EmployeeService,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
   ngOnInit(): void {
     this.allEmployeeList();
@@ -49,28 +52,14 @@ export class AddProjectComponent implements OnInit {
       ...this.addProjectForm.value,
       employees: this.SelectedEmpId,
     };
-    this.projectService.addProjectData(UpdatedProjectForm).subscribe(
-      (response) => {
-        // console.log("Project Added")
-      },
-      (error) => {
-        this.error.next(error.message);
-      }
-    );
-
-    this.refreshPage();
+    this.projectService.addProjectData(UpdatedProjectForm).subscribe(res => {
+      this.data.allProjectList()
+    })
   }
   allEmployeeList() {
-    this.employeeService.getAllEmployeeDetails().subscribe(
-      (response) => {
-        this.employeeList = response;
-      },
-      (error) => {
-        this.error.next(error.message);
-      }
-    );
-  }
-  refreshPage() {
-    window.location.reload();
+    this.employeeService.getAllEmployeeDetails()
+    this.employeeService.getEmpList.subscribe((user) => {
+      this.employeeList = user;
+    })
   }
 }

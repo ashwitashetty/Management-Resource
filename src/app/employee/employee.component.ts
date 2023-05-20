@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
-import { Subject } from "rxjs";
+import { BehaviorSubject, Subject } from "rxjs";
 import { AddEmployeeComponent } from "../add-employee/add-employee.component";
 import { EmployeeInfo, ProjectInfo } from "../interface/interface.model";
 import { EmployeeService } from "../service/employee.service";
@@ -16,10 +16,9 @@ export class EmployeeComponent implements OnInit {
   selectedEmp: any;
   filteredString: string = "";
   selectedIndex: any;
-  projectList: any= [];
-  sortedProjects: any;
+  EmployeeprojectList: any = [];
+  sortedProjects: any = [];
   sortedProjectList: any = [];
-  error = new Subject<string>();
   constructor(
     public dialog: MatDialog,
     public employeeService: EmployeeService,
@@ -37,46 +36,41 @@ export class EmployeeComponent implements OnInit {
   }
   clickedEmp(data: any) {
     this.selectedEmp = data;
-    this.allProjectList();
+    console.log("clicked data", this.selectedEmp);
+    this.individualEmpDetails(data)
     localStorage.removeItem("EmployeeDetail");
-
   }
 
   allEmployeeList() {
-    this.employeeService.getAllEmployeeDetails().subscribe(
-      (response: EmployeeInfo[]) => {
-        this.empList = response;
-        console.log("emp list", this.empList);
-        if (localStorage.getItem("EmployeeDetail")) {
-          this.selectedEmp = JSON.parse(localStorage.getItem("EmployeeDetail"));
-        } else {
-          this.selectedEmp = this.empList[0];
-        }
-      },
-      (error) => {
-        this.error.next(error.message);
+    this.employeeService.getAllEmployeeDetails();
+    this.employeeService.getEmpList.subscribe((user) => {
+      this.empList = user;
+      if (localStorage.getItem("EmployeeDetail")) {
+        this.selectedEmp = JSON.parse(localStorage.getItem("EmployeeDetail"));
+      } else {
+        this.selectedEmp = this.empList[0];
       }
-    );
+    });
   }
   allProjectList() {
-    this.sortedProjectList = [];
-    this.projectService.getAllProjectDetails().subscribe(
-      (response) => {
-        this.projectList = response;
-        this.sortedProjects = this.projectList.map((proj: any) => {
-          proj.employees.map((i: any) => {
-            if (i.id === this.selectedEmp.id) {
-              this.sortedProjectList.push(proj.name);
-            }
-          });
-        });
-      },
-      (error) => {
-        this.error.next(error.message);
-      }
-    );
+    this.projectService.getAllProjectDetails();
+    this.projectService.getProjDetail.subscribe((proj) => {
+      this.EmployeeprojectList = proj;
+      this.individualEmpDetails(this.selectedEmp)
+    });
+
   }
   onSearch(event: any) {
     this.filteredString = event.target.value;
+  }
+  individualEmpDetails(data: any) {
+    this.sortedProjectList = [];
+    this.EmployeeprojectList.map((proj: any) => {
+      proj.employees.map((i: any) => {
+        if (i?.id === data?.id) {
+          this.sortedProjectList.push(proj.name);
+        }
+      });
+    });
   }
 }
