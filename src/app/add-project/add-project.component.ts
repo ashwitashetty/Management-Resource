@@ -52,13 +52,14 @@ export class AddProjectComponent implements OnInit {
       ...this.addProjectForm.value,
       employees: this.SelectedEmpId,
     };
-    this.projectService.addProjectData(UpdatedProjectForm).subscribe(res => {
-      this.data.allProjectList()
-    })
+    this.projectService.addProjectData(UpdatedProjectForm)
+    // .subscribe(res => {
+    //   this.data.allProjectList()
+    // })
   }
   allEmployeeList() {
-    this.employeeService.getAllEmployeeDetails()
-    this.employeeService.getEmpList.subscribe((user) => {
+    // this.employeeService.getAllEmployeeDetails()
+    this.employeeService.employeeList$.subscribe((user) => {
       this.employeeList = user;
     })
   }

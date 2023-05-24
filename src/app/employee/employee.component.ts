@@ -41,8 +41,8 @@ export class EmployeeComponent implements OnInit {
   }
 
   allEmployeeList() {
-    this.employeeService.getAllEmployeeDetails();
-    this.employeeService.getEmpList.subscribe((user:EmployeeInfo[]) => {
+    // this.employeeService.getAllEmployeeDetails();
+    this.employeeService.employeeList$.subscribe((user:EmployeeInfo[]) => {
       this.empList = user;
       if (localStorage.getItem("EmployeeDetail")) {
         this.selectedEmp = JSON.parse(localStorage.getItem("EmployeeDetail"));
@@ -52,8 +52,8 @@ export class EmployeeComponent implements OnInit {
     });
   }
   allProjectList() {
-    this.projectService.getAllProjectDetails();
-    this.projectService.getProjDetail.subscribe((proj:ProjectInfo[]) => {
+    // this.projectService.getAllProjectDetails();
+    this.projectService.projectList$.subscribe((proj:ProjectInfo[]) => {
       this.EmployeeprojectList = proj;
       this.individualEmpDetails(this.selectedEmp)
     });

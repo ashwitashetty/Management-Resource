@@ -8,20 +8,24 @@ import { EmployeeInfo } from "../interface/interface.model";
 })
 export class EmployeeService {
   empNameList: any = [];
-  getEmpList = new Subject<any>();
+  // getEmpList = new Subject<any>();
   error = new Subject<string>();
   BASE_URL = environment.url_api;
+  getEmpList: BehaviorSubject<EmployeeInfo[]> = new BehaviorSubject<
+    EmployeeInfo[]
+  >([]);
+  employeeList$: Observable<EmployeeInfo[]> = this.getEmpList.asObservable();
   constructor(private http: HttpClient) {}
 
   getAllEmployeeDetails() {
-    return (
-      this.http.get(`${this.BASE_URL}employees`).subscribe((response) => {
+    this.http.get(`${this.BASE_URL}employees`).subscribe({
+      next: (response: EmployeeInfo[]) => {
         this.getEmpList.next(response);
-      }),
+      },
+    }),
       (error) => {
         this.error.next(error.message);
-      }
-    );
+      };
   }
   addEmployeeData(data: any) {
     const name: string = data.name;

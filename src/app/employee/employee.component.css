@@ -1,11 +1,12 @@
 .employee-container {
   height: 85vh;
-  width: 100%;
+  width: 100vw;
   display: flex;
   flex-direction: row;
 }
 .add-emp-container {
-  width: 50%;
+  /* width: 50%; */
+  width: 50vw;
   display: flex;
   flex-direction: column;
   padding-left: 30px;
@@ -18,15 +19,16 @@
   font-size: 18px;
   line-height: 15px;
   color: #000000;
-  margin-top: 7%;
+  margin-top: 70px;
 }
 .search-input {
   width: 350px;
-  height: 40px;
+  padding-left: 9px;
+  min-height: 40px;
   background: #ffffff;
   outline: none;
   border: 1px solid #474242;
-  margin-top: 3%;
+  margin-top: 30px;
   margin-bottom: 50px;
   font-family: Inter Regular;
   font-style: normal;

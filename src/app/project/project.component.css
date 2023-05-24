@@ -22,7 +22,8 @@
 }
 .search-input {
   width: 350px;
-  height: 40px;
+  padding-left: 9px;
+  min-height: 40px;
   background: #ffffff;
   outline: none;
   border: 1px solid #474242;

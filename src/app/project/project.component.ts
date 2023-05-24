@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { Subject, Subscription } from "rxjs";
 import { AddProjectComponent } from "../add-project/add-project.component";
@@ -37,16 +37,14 @@ export class ProjectComponent implements OnInit {
     });
   }
   allProjectList() {
-    this.projectService.getAllProjectDetails();
-    this.sub = this.projectService.getProjDetail.subscribe(
+    // this.projectService.getAllProjectDetails();
+    this.sub = this.projectService.projectList$.subscribe(
       (proj: ProjectInfo[]) => {
         this.projectList = proj;
-
-        this.selectedProject = this.projectList[0];
-
-        this.sub.unsubscribe();
+        // this.sub.unsubscribe();
       }
-    );
+      );
+      this.selectedProject = this.projectList[0];
   }
   onProjectSearch(event: any) {
     this.filteredProjectText = event.target.value;
@@ -59,7 +57,7 @@ export class ProjectComponent implements OnInit {
   }
   statusUpdate(state: string, id: number) {
     this.projectService.fetchProjectStatus(state, id);
-    this.projectService.getProjDetail.subscribe((response) => {
+    this.projectService.projectList$.subscribe((response) => {
       this.projectList = response;
 
       this.projectList.map((proj) => {
@@ -67,9 +65,12 @@ export class ProjectComponent implements OnInit {
           this.selectedProject = proj;
         }
       });
+      // this.projectService.getAllProjectDetails()
+      // this.allProjectList()
     }),
       (error) => {
         this.error.next(error.message);
       };
   }
+
 }
