@@ -37,11 +37,9 @@ export class ProjectComponent implements OnInit {
     });
   }
   allProjectList() {
-    // this.projectService.getAllProjectDetails();
     this.sub = this.projectService.projectList$.subscribe(
       (proj: ProjectInfo[]) => {
         this.projectList = proj;
-        // this.sub.unsubscribe();
       }
       );
       this.selectedProject = this.projectList[0];
@@ -65,8 +63,6 @@ export class ProjectComponent implements OnInit {
           this.selectedProject = proj;
         }
       });
-      // this.projectService.getAllProjectDetails()
-      // this.allProjectList()
     }),
       (error) => {
         this.error.next(error.message);

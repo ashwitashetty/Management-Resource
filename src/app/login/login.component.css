@@ -51,6 +51,9 @@ input {
 input[type="text"]:focus {
   background: #dbdef7;
 }
+input[type="password"]:focus {
+  background: #dbdef7;
+}
 button:focus {
   outline: none;
 }

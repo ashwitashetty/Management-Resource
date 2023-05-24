@@ -36,13 +36,12 @@ export class EmployeeComponent implements OnInit {
   }
   clickedEmp(data: any) {
     this.selectedEmp = data;
-    this.individualEmpDetails(data)
+    this.individualEmpDetails(data);
     localStorage.removeItem("EmployeeDetail");
   }
 
   allEmployeeList() {
-    // this.employeeService.getAllEmployeeDetails();
-    this.employeeService.employeeList$.subscribe((user:EmployeeInfo[]) => {
+    this.employeeService.employeeList$.subscribe((user: EmployeeInfo[]) => {
       this.empList = user;
       if (localStorage.getItem("EmployeeDetail")) {
         this.selectedEmp = JSON.parse(localStorage.getItem("EmployeeDetail"));
@@ -52,12 +51,10 @@ export class EmployeeComponent implements OnInit {
     });
   }
   allProjectList() {
-    // this.projectService.getAllProjectDetails();
-    this.projectService.projectList$.subscribe((proj:ProjectInfo[]) => {
+    this.projectService.projectList$.subscribe((proj: ProjectInfo[]) => {
       this.EmployeeprojectList = proj;
-      this.individualEmpDetails(this.selectedEmp)
+      this.individualEmpDetails(this.selectedEmp);
     });
-
   }
   onSearch(event: any) {
     this.filteredString = event.target.value;

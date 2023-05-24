@@ -53,12 +53,9 @@ export class AddProjectComponent implements OnInit {
       employees: this.SelectedEmpId,
     };
     this.projectService.addProjectData(UpdatedProjectForm)
-    // .subscribe(res => {
-    //   this.data.allProjectList()
-    // })
   }
   allEmployeeList() {
-    // this.employeeService.getAllEmployeeDetails()
+
     this.employeeService.employeeList$.subscribe((user) => {
       this.employeeList = user;
     })
