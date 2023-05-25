@@ -1,6 +1,7 @@
 .header-container {
   /* height: 7vh; */
   width: 100vw;
+  min-width: 900px;
   background-color: #6264a7;
   display: flex;
   justify-content: space-between;

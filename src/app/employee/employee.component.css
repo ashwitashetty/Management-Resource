@@ -1,16 +1,15 @@
 .employee-container {
   height: 85vh;
   width: 100vw;
+  min-width: 900px;
   display: flex;
   flex-direction: row;
 }
 .add-emp-container {
-  /* width: 50%; */
   width: 50vw;
+  min-width: 450px;
   display: flex;
   flex-direction: column;
-  padding-left: 30px;
-  padding-right: 40px;
 }
 .all-emp-text {
   font-family: Inter Medium;
@@ -20,6 +19,7 @@
   line-height: 15px;
   color: #000000;
   margin-top: 70px;
+  margin-left: 30px;
 }
 .search-input {
   width: 350px;
@@ -35,6 +35,7 @@
   font-weight: 700;
   font-size: 18px;
   line-height: 15px;
+  margin-left: 30px;
 }
 ::placeholder {
   color: #cdbebe;
@@ -48,6 +49,7 @@
   height: 260px;
   width: 360px;
   overflow-y: auto;
+  margin-left: 30px;
 }
 
 .emp-list-container {
@@ -71,6 +73,8 @@
   display: flex;
   flex-direction: column;
   width: 50vw;
+  min-width: 450px;
+
   margin-top: 100px;
 }
 .label-text {
@@ -81,6 +85,7 @@
   font-size: 20px;
   line-height: 15px;
   color: #000000;
+  margin-left: 30px;
 }
 .active-project-label-text {
   display: flex;
@@ -95,6 +100,7 @@
 }
 .active-project-label {
   width: 160px;
+  margin-left: 30px;
 }
 .activeProjectDiv {
   display: flex;

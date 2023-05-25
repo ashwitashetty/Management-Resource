@@ -1,15 +1,18 @@
 .project-container {
   height: 85vh;
   width: 100%;
+  min-width: 900px;
+
   display: flex;
   flex-direction: row;
 }
 .add-project-container {
   width: 50%;
+  min-width: 450px;
+
   display: flex;
   flex-direction: column;
-  padding-left: 30px;
-  padding-right: 40px;
+
 }
 .all-project-text {
   font-family: Inter Medium;
@@ -19,6 +22,7 @@
   line-height: 15px;
   color: #000000;
   margin-top: 7%;
+  margin-left: 30px;
 }
 .search-input {
   width: 350px;
@@ -34,6 +38,7 @@
   font-weight: 700;
   font-size: 18px;
   line-height: 15px;
+  margin-left: 30px;
 }
 ::placeholder {
   color: #cdbebe;
@@ -59,10 +64,13 @@
 }
 .project-details-container {
   width: 50%;
+  min-width: 450px;
 
-  padding-right: 30px;
-  padding-left: 40px;
-  padding-top: 60px;
+  margin-left: 40px;
+
+  margin-top: 100px;
+
+
 }
 .label-text {
   font-family: Inter Bold;
@@ -71,6 +79,8 @@
   line-height: 15px;
   color: #000000;
   margin-top: 5%;
+
+
 }
 .flex {
   display: flex;
@@ -88,6 +98,7 @@
   height: 260px;
   width: 360px;
   overflow-y: auto;
+  margin-left: 30px;
 }
 
 .table-list-container {

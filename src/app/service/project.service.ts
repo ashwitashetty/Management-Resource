@@ -24,7 +24,6 @@ export class ProjectService {
       },
     }),
       (error) => {
-        console.log("errrr", error);
         this.error.next(error.message);
       };
   }
