@@ -15,15 +15,12 @@ export class ProjectService {
     ProjectInfo[]
   >([]);
   projectList$: Observable<ProjectInfo[]> = this.getProjDetail.asObservable();
-  // getProjDetail = new BehaviorSubject<any>();
+
   error = new Subject<string>();
   getAllProjectDetails() {
-    // if(this.getProjDetail.observed)
-
     this.http.get(`${this.BASE_URL}projects`).subscribe({
       next: (res: ProjectInfo[]) => {
         this.getProjDetail.next(res);
-        // console.log('observed',this.getProjDetail.observed)
       },
     }),
       (error) => {
@@ -49,7 +46,6 @@ export class ProjectService {
           status: data,
         })
         .subscribe((res) => {
-          // this.ProjectDetailsUpdate()
           this.getAllProjectDetails();
         }),
       (error) => {

@@ -8,7 +8,7 @@ import { EmployeeInfo } from "../interface/interface.model";
 })
 export class EmployeeService {
   empNameList: any = [];
-  // getEmpList = new Subject<any>();
+
   error = new Subject<string>();
   BASE_URL = environment.url_api;
   getEmpList: BehaviorSubject<EmployeeInfo[]> = new BehaviorSubject<
@@ -32,10 +32,7 @@ export class EmployeeService {
     this.empNameList.push(name);
     return (
       this.http.post(`${this.BASE_URL}employees`, data).subscribe((res) => {
-        // this.updatedEmpList.next(this.empNameList);
-        // this.updatedEmpList.subscribe((i) => {
-        //   this.getEmpList.next(i)
-        // })
+    
         this.getAllEmployeeDetails();
       }),
       (error) => {
