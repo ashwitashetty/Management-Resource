@@ -28,8 +28,8 @@ export class EmployeeService {
       };
   }
   addEmployeeData(data: any) {
-    const name: string = data.name;
-    this.empNameList.push(name);
+    // const name: string = data.name;
+    // this.empNameList.push(name);
     return (
       this.http.post(`${this.BASE_URL}employees`, data).subscribe((res) => {
     

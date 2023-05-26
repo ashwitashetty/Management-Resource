@@ -18,7 +18,7 @@
             <div class="table-listsection" *ngFor="let list of projectList;"
                 [ngStyle]="{'background-color': list.name === selectedProject?.name ? '#DBDEF6' : 'transparent'}">
                 <div class="table-list-container"
-                    *ngIf="filteredProjectText==='' || list.name.toLowerCase().includes(filteredProjectText.toLocaleLowerCase())"
+                    *ngIf="filteredProjectText==='' || list?.name?.toLowerCase().includes(filteredProjectText?.toLocaleLowerCase())"
                     (click)="clickedProject(list) ">
                     <p class="table-list-content">{{list.name}}</p>
                     <p class="table-status" *ngIf="list?.status ==='New'">Yet to start</p>
